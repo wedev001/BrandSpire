@@ -113,7 +113,7 @@ export const process = [
 ];
 
 export const testimonials = [
-  { name: 'Rohit',  role: 'FitZone Gym',     text: 'Amazing work! Our gym website looks perfect and we get many new inquiries every week.', rating: 5 },
+  { name: 'Suraj',  role: 'FitZone Gym',     text: 'Amazing work! Our gym website looks perfect and we get many new inquiries every week.', rating: 5 },
   { name: 'Priya',  role: 'Café Aroma',      text: 'Very professional and delivered on time. Highly recommended for any business.', rating: 5 },
   { name: 'Aman',   role: 'Coaching Hub',    text: 'Great communication and support. They genuinely understand our needs.', rating: 5 },
   { name: 'Neha',   role: 'BloomBoutique',   text: 'They turned our vague idea into a beautifully working product. 10/10.', rating: 5 },
