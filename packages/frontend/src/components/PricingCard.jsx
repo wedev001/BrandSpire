@@ -19,12 +19,12 @@ export default function PricingCard({ plan, index = 0, selected, dimmed, onSelec
       whileHover={{ y: -8, transition: { duration: 0.2, type: 'spring', stiffness: 300, damping: 30 } }}
       animate={{
         opacity: dimmed ? 0.55 : 1,
-        scale: selected ? 1.02 : 1,
       }}
-      layout
+      transition={{ duration: 0.3, ease: 'easeOut' }}
       className={
         'relative rounded-2xl p-[1px] h-full transition-all duration-300 ' +
-        (plan.popular ? 'bg-violet-gradient shadow-glow' : selected ? 'bg-gradient-to-br from-violetx-500/40 to-violetx-400/20 shadow-xl' : 'bg-slate-200 dark:bg-white/[0.06]')
+        (plan.popular ? 'bg-violet-gradient shadow-glow' : selected ? 'bg-gradient-to-br from-violetx-500/40 to-violetx-400/20 shadow-xl' : 'bg-slate-200 dark:bg-white/[0.06]') +
+        (selected ? ' scale-102' : '')
       }
     >
       {plan.popular && (
