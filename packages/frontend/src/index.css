@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light dark; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body { overflow-x: hidden; }
+
+body {
+  @apply font-sans bg-white text-slate-900 dark:bg-ink-950 dark:text-slate-100;
+  transition: background-color .4s ease, color .4s ease;
+}
+
+/* LIGHT — clean white with subtle blue ambience */
+body {
+  background-color: #ffffff;
+  background-image:
+    radial-gradient(ellipse 70% 50% at 50% -10%, rgba(59,130,246,0.12), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 10%, rgba(34,211,238,0.10), transparent 60%);
+}
+
+/* DARK — deep navy with electric blue glow */
+.dark body {
+  background-color: #04060d;
+  background-image:
+    radial-gradient(ellipse 70% 50% at 50% -10%, rgba(59,130,246,0.20), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 10%, rgba(34,211,238,0.18), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 0% 100%, rgba(37,99,235,0.12), transparent 60%);
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #22d3ee, #2563eb);
+  border-radius: 8px;
+}
+
+@layer components {
+  /* Edge-to-edge layout with symmetric breathing room — left and right gutters match. */
+  .container-px { @apply px-5 sm:px-8 md:px-10 lg:px-14 xl:px-20 2xl:px-28; }
+  .section-y    { @apply py-16 sm:py-20 lg:py-24 xl:py-28; }
+  .max-w-app    { @apply w-full mx-0; }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #22d3ee 0%, #3b82f6 50%, #1d4ed8 100%);
+  }
+
+  .panel {
+    @apply rounded-2xl border border-slate-200 dark:border-white/[0.06] bg-white dark:bg-surface;
+  }
+  .panel-soft {
+    @apply rounded-2xl border border-slate-200 dark:border-white/[0.06] bg-white/70 dark:bg-surface-soft;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ease-out;
+  }
+  .btn-primary {
+    @apply btn text-white shadow-glow;
+    background-image: linear-gradient(135deg, #22d3ee 0%, #2563eb 100%);
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 16px 60px -10px rgba(59,130,246,0.65); }
+  .btn-ghost {
+    @apply btn border border-slate-300 dark:border-white/15 text-slate-700 dark:text-slate-200 hover:border-violetx-500 hover:text-violetx-600 dark:hover:text-violetx-300;
+  }
+  .btn-outline {
+    @apply btn border border-violetx-500/40 text-violetx-600 dark:text-violetx-300 hover:bg-violetx-500/10;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-semibold uppercase tracking-[0.18em]
+           bg-violet-gradient-soft border border-violetx-500/30 text-violetx-600 dark:text-violetx-300;
+  }
+
+  .card {
+    @apply rounded-2xl bg-white dark:bg-surface-card border border-slate-200 dark:border-white/[0.06] p-6 transition-all duration-300;
+  }
+  .card-hover {
+    @apply hover:border-violetx-500/50 hover:-translate-y-1 hover:shadow-glow;
+  }
+
+  .icon-tile {
+    @apply h-11 w-11 grid place-items-center rounded-xl bg-violet-gradient-soft border border-violetx-500/30 text-violetx-600 dark:text-violetx-300;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(15,23,42,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.06) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .dark .grid-bg {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  }
+
+  .divider-violet {
+    background-image: linear-gradient(90deg, transparent, rgba(59,130,246,0.45), transparent);
+    height: 1px;
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

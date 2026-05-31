@@ -1,0 +1,32 @@
+{
+  "name": "brandspire",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BrandSpire — Tech. Innovate. Inspire. A modern digital solutions startup website.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=@brandspire/frontend",
+    "dev:frontend": "npm run dev --workspace=@brandspire/frontend",
+    "dev:backend": "npm run dev --workspace=@brandspire/backend",
+    "build": "npm run build --workspace=@brandspire/frontend",
+    "preview": "npm run preview --workspace=@brandspire/frontend",
+    "start:backend": "npm run start --workspace=@brandspire/backend",
+    "lint": "npm run lint --workspaces --if-present",
+    "clean": "rm -rf node_modules packages/*/node_modules packages/*/dist"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "brandspire",
+    "react",
+    "vite",
+    "tailwind",
+    "startup",
+    "monorepo"
+  ],
+  "author": "BrandSpire",
+  "license": "MIT"
+}
