@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, MessageCircle, Calendar, Sparkles, Plus, ChevronDown } from 'lucide-react';
+import { Check, MessageCircle, Calendar, Sparkles, ChevronDown, ShieldCheck, Code2, Clock, Award, Zap, Star, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero.jsx';
 import PricingCard from '../components/PricingCard.jsx';
@@ -8,6 +8,19 @@ import SectionHeading from '../components/SectionHeading.jsx';
 import { pricing, addons, company } from '../data/site.js';
 
 const fmt = (n) => '₹' + n.toLocaleString('en-IN');
+
+const guarantees = [
+  { icon: ShieldCheck, label: '30-day support', sub: 'Free after launch' },
+  { icon: Code2,       label: 'Source code',    sub: 'Full ownership' },
+  { icon: Clock,       label: 'On-time ship',   sub: 'Milestone-driven' },
+  { icon: Award,       label: 'No lock-in',     sub: 'Move freely' },
+];
+
+const presets = [
+  { id: 'launch',  label: 'Launch Bundle',  addons: ['hosting', 'logo', 'analytics'],  hint: 'Get online in days' },
+  { id: 'growth',  label: 'Growth Bundle',  addons: ['seo', 'analytics', 'whatsapp-bot'], hint: 'Built to convert' },
+  { id: 'scale',   label: 'Scale Bundle',   addons: ['extra-pages', 'seo', 'hosting', 'whatsapp-bot'], hint: 'Go all-in' },
+];
 
 const faqs = [
   { q: 'How long does it take to build my website?',
@@ -55,49 +68,132 @@ export default function Pricing() {
 
       {/* Billing Frequency Toggle */}
       <section className="max-w-app container-px py-8">
-        <div className="flex justify-center items-center gap-4">
-          <span className={`text-sm font-medium ${billingFrequency === 'onetime' ? 'text-slate-900 dark:text-white' : 'text-slate-500 dark:text-slate-400'}`}>
-            One-Time Payment
-          </span>
-          <motion.button
-            onClick={() => setBillingFrequency(billingFrequency === 'onetime' ? 'custom' : 'onetime')}
-            className="relative inline-flex h-8 w-14 items-center rounded-full bg-slate-200 dark:bg-white/10 border border-slate-300 dark:border-white/20 transition-colors hover:bg-slate-300 dark:hover:bg-white/15"
-            whileTap={{ scale: 0.98 }}
+        <div className="flex justify-center">
+          <div
+            role="tablist"
+            aria-label="Billing type"
+            className="relative inline-flex p-1 rounded-full bg-slate-100 dark:bg-white/[0.06] border border-slate-200 dark:border-white/10 shadow-sm"
           >
-            <motion.span
-              layout
-              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-              className={`absolute h-6 w-6 rounded-full bg-gradient-to-r from-violet-500 to-violetx-500 shadow-glow transition-all ${
-                billingFrequency === 'custom' ? 'left-[26px]' : 'left-1'
-              }`}
-            />
-          </motion.button>
-          <span className={`text-sm font-medium ${billingFrequency === 'custom' ? 'text-slate-900 dark:text-white' : 'text-slate-500 dark:text-slate-400'}`}>
-            Custom Packages
-          </span>
+            {[
+              { id: 'onetime', label: 'One-Time Payment' },
+              { id: 'custom', label: 'Custom Packages' },
+            ].map((opt) => {
+              const active = billingFrequency === opt.id;
+              return (
+                <button
+                  key={opt.id}
+                  role="tab"
+                  aria-selected={active}
+                  onClick={() => setBillingFrequency(opt.id)}
+                  className={
+                    'relative z-10 px-5 sm:px-6 py-2 text-sm font-semibold rounded-full transition-colors duration-300 ' +
+                    (active
+                      ? 'text-white'
+                      : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white')
+                  }
+                >
+                  {active && (
+                    <motion.span
+                      layoutId="billingToggleActive"
+                      transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                      className="absolute inset-0 -z-10 rounded-full bg-violet-gradient shadow-glow"
+                    />
+                  )}
+                  {opt.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Trust strip — universal guarantees */}
+      <section className="max-w-app container-px pb-4">
+        <div className="rounded-2xl border border-slate-200 dark:border-white/[0.06] bg-white/60 dark:bg-white/[0.02] backdrop-blur-sm">
+          <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-slate-200 dark:divide-white/[0.06]">
+            {guarantees.map(({ icon: Icon, label, sub }, i) => (
+              <motion.div
+                key={label}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ delay: i * 0.06 }}
+                className="flex items-center gap-3 p-4 sm:p-5"
+              >
+                <span className="h-10 w-10 rounded-xl grid place-items-center bg-violet-gradient-soft border border-violetx-500/30 text-violetx-600 dark:text-violetx-300 shrink-0">
+                  <Icon size={18} />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold truncate">{label}</p>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">{sub}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Pricing Cards — clickable for selection */}
-      <section className="max-w-app container-px">
-        <p className="text-center text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 mb-6">
-          Click a package to customise it below
-        </p>
-        <div className="grid md:grid-cols-3 gap-6">
-          {pricing.map((plan, i) => (
-            <PricingCard
-              key={plan.id}
-              plan={plan}
-              index={i}
-              selected={selectedId === plan.id}
-              dimmed={selectedId !== plan.id}
-              onSelect={() => setSelectedId(plan.id)}
-            />
-          ))}
-        </div>
-      </section>
+      <AnimatePresence mode="wait">
+        {billingFrequency === 'onetime' ? (
+          <motion.section
+            key="onetime"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-app container-px"
+          >
+            <p className="text-center text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 mb-6">
+              Click a package to customise it below
+            </p>
+            <div className="grid md:grid-cols-3 gap-6">
+              {pricing.map((plan, i) => (
+                <PricingCard
+                  key={plan.id}
+                  plan={plan}
+                  index={i}
+                  selected={selectedId === plan.id}
+                  dimmed={selectedId !== plan.id}
+                  onSelect={() => setSelectedId(plan.id)}
+                />
+              ))}
+            </div>
+          </motion.section>
+        ) : (
+          <motion.section
+            key="custom"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-app container-px"
+          >
+            <div className="relative panel overflow-hidden p-8 sm:p-12 text-center">
+              <div className="absolute inset-0 -z-10 bg-violet-radial opacity-60" />
+              <span className="chip mx-auto"><Sparkles size={12}/> Custom Packages</span>
+              <h3 className="mt-4 font-display text-3xl sm:text-4xl font-bold tracking-tight">
+                Built around <span className="text-gradient">your goals</span>
+              </h3>
+              <p className="mt-3 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                Need something beyond our standard tiers? Bespoke web apps, advanced dashboards,
+                integrations or ongoing retainers — we'll scope it together and send a fixed quote.
+              </p>
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                <a href={company.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-primary">
+                  <MessageCircle size={16}/> Discuss on WhatsApp
+                </a>
+                <Link to="/contact" className="btn-ghost">
+                  <Calendar size={16}/> Book a Free Call
+                </Link>
+              </div>
+            </div>
+          </motion.section>
+        )}
+      </AnimatePresence>
 
       {/* Interactive Plan Builder */}
+      {billingFrequency === 'onetime' && (
       <section className="section-y max-w-app container-px">
         <div className="grid lg:grid-cols-5 gap-6 lg:gap-8 items-start">
           <div className="lg:col-span-3">
@@ -120,7 +216,48 @@ export default function Pricing() {
               Add the optional services you need. The total on the right updates in real time.
             </p>
 
-            <div className="mt-7 grid sm:grid-cols-2 gap-3">
+            {/* Quick preset bundles */}
+            <div className="mt-5">
+              <p className="text-[11px] uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 mb-2.5 flex items-center gap-2">
+                <Zap size={12} className="text-violetx-500" /> Quick Presets
+                {selectedAddons.size > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setSelectedAddons(new Set())}
+                    className="ml-auto inline-flex items-center gap-1 text-[11px] font-semibold text-slate-500 hover:text-violetx-500 transition-colors normal-case tracking-normal"
+                  >
+                    <X size={11} /> Clear all
+                  </button>
+                )}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {presets.map((p) => {
+                  const matches = p.addons.every((a) => selectedAddons.has(a)) && selectedAddons.size === p.addons.length;
+                  return (
+                    <motion.button
+                      key={p.id}
+                      type="button"
+                      whileTap={{ scale: 0.97 }}
+                      onClick={() => setSelectedAddons(new Set(p.addons))}
+                      className={
+                        'group inline-flex items-center gap-2 px-3.5 py-2 rounded-full border text-sm font-semibold transition-all ' +
+                        (matches
+                          ? 'border-transparent bg-violet-gradient text-white shadow-glow'
+                          : 'border-slate-200 dark:border-white/10 hover:border-violetx-500/50 hover:bg-violet-gradient-soft')
+                      }
+                    >
+                      <Sparkles size={13} className={matches ? 'text-white' : 'text-violetx-500'} />
+                      {p.label}
+                      <span className={'text-[10px] font-medium opacity-70 ' + (matches ? 'text-white/80' : 'text-slate-500 dark:text-slate-400')}>
+                        · {p.hint}
+                      </span>
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="mt-6 grid sm:grid-cols-2 gap-3">
               {addons.map((a, i) => {
                 const active = selectedAddons.has(a.id);
                 return (
@@ -238,6 +375,7 @@ export default function Pricing() {
           </div>
         </div>
       </section>
+      )}
 
       {/* Comparison Table */}
       <section className="section-y max-w-app container-px">
@@ -247,17 +385,42 @@ export default function Pricing() {
           title={<>Side by <span className="text-gradient">Side</span></>}
           subtitle="A quick overview of what each tier includes."
         />
-        <div className="mt-10 overflow-x-auto rounded-2xl border border-slate-200 dark:border-white/10">
-          <table className="w-full text-sm min-w-[640px]">
+        <div className="mt-10 overflow-x-auto rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-surface-card">
+          <table className="w-full text-sm min-w-[680px]">
             <thead>
-              <tr className="bg-slate-50 dark:bg-surface-soft">
-                <th className="text-left p-4 font-semibold text-slate-500 dark:text-slate-400">Feature</th>
+              <tr className="bg-slate-50 dark:bg-surface-soft border-b border-slate-200 dark:border-white/10">
+                <th className="text-left p-5 font-semibold text-slate-500 dark:text-slate-400 uppercase text-xs tracking-wider">
+                  Feature
+                </th>
                 {pricing.map((p) => (
-                  <th key={p.id} className="p-4 text-left">
-                    <span className="font-display font-bold">{p.name}</span>
-                    <span className="block text-xs font-normal text-violetx-600 dark:text-violetx-300 mt-0.5">
+                  <th
+                    key={p.id}
+                    className={
+                      'p-5 text-left align-top relative ' +
+                      (p.popular ? 'bg-violet-gradient-soft' : '')
+                    }
+                  >
+                    {p.popular && (
+                      <span className="absolute top-2 right-3 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-violet-gradient text-white shadow-glow">
+                        <Star size={9} className="fill-white" /> Most Popular
+                      </span>
+                    )}
+                    <span className="font-display font-bold text-base">{p.name}</span>
+                    <span className="block text-xs font-semibold text-violetx-600 dark:text-violetx-300 mt-1">
                       {fmt(p.priceMin)}–{fmt(p.priceMax)}{p.suffix}
                     </span>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedId(p.id)}
+                      className={
+                        'mt-3 text-[11px] font-semibold inline-flex items-center gap-1 transition-colors ' +
+                        (selectedId === p.id
+                          ? 'text-violetx-600 dark:text-violetx-300'
+                          : 'text-slate-500 dark:text-slate-400 hover:text-violetx-600')
+                      }
+                    >
+                      {selectedId === p.id ? <><Check size={12} /> Selected</> : 'Select this plan →'}
+                    </button>
                   </th>
                 ))}
               </tr>
@@ -274,19 +437,31 @@ export default function Pricing() {
                 'Analytics dashboard',
                 'Priority support',
               ].map((feature, i) => (
-                <tr key={feature} className={i % 2 === 0 ? 'bg-white dark:bg-transparent' : 'bg-slate-50/60 dark:bg-white/[0.02]'}>
-                  <td className="p-4 text-slate-700 dark:text-slate-300">{feature}</td>
+                <tr
+                  key={feature}
+                  className="border-b border-slate-100 dark:border-white/[0.04] last:border-0 hover:bg-slate-50/80 dark:hover:bg-white/[0.02] transition-colors group/row"
+                >
+                  <td className="p-4 text-slate-700 dark:text-slate-300 font-medium">{feature}</td>
                   {pricing.map((p) => {
-                    // simple rules — basic gets first 2, standard adds 3-5, premium gets all
                     const tier = p.id === 'basic' ? 0 : p.id === 'standard' ? 1 : 2;
                     const featureTier = i <= 1 ? 0 : i <= 4 ? 1 : 2;
                     const included = tier >= featureTier;
                     return (
-                      <td key={p.id} className="p-4">
+                      <td
+                        key={p.id}
+                        className={
+                          'p-4 ' +
+                          (p.popular ? 'bg-violet-gradient-soft/40 dark:bg-violet-gradient-soft/30' : '')
+                        }
+                      >
                         {included ? (
-                          <Check size={18} className="text-violetx-500" />
+                          <span className="inline-flex h-7 w-7 rounded-full bg-violetx-500/15 border border-violetx-500/30 items-center justify-center group-hover/row:bg-violetx-500/25 transition-colors">
+                            <Check size={14} className="text-violetx-600 dark:text-violetx-300" strokeWidth={3} />
+                          </span>
                         ) : (
-                          <span className="text-slate-300 dark:text-white/15">—</span>
+                          <span className="inline-flex h-7 w-7 rounded-full bg-slate-100 dark:bg-white/[0.04] items-center justify-center">
+                            <X size={14} className="text-slate-300 dark:text-white/20" />
+                          </span>
                         )}
                       </td>
                     );

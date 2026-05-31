@@ -23,7 +23,12 @@ export function ThemeProvider({ children }) {
   }, [theme]);
 
   const toggleTheme = useCallback(() => {
+    const root = document.documentElement;
+    root.classList.add('theme-transitioning');
     setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
+    window.setTimeout(() => {
+      root.classList.remove('theme-transitioning');
+    }, 450);
   }, []);
 
   return (

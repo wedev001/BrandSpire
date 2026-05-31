@@ -8,6 +8,9 @@ dist/
 build/
 out/
 
+# Backend runtime data (form submissions, etc.)
+packages/backend/data/
+
 # Environment variables
 .env
 .env.local

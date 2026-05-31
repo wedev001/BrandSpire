@@ -47,8 +47,8 @@ export default function Logo({ size = 40, variant = 'mark', className = '' }) {
       </motion.div>
       <div className="flex flex-col leading-none">
         <span className="font-display font-bold text-lg tracking-tight">
-          <span className="text-slate-900 dark:text-white">brand</span>
-          <span className="text-gradient">spire</span>
+          <span className="text-slate-900 dark:text-white">Brand</span>
+          <span className="text-gradient">Spire</span>
         </span>
         <span className="hidden sm:block text-[9px] tracking-[0.28em] text-violetx-400/80 uppercase mt-1">
           Tech · Innovate · Inspire

@@ -17,6 +17,23 @@ body {
   transition: background-color .4s ease, color .4s ease;
 }
 
+/* Seamless theme switch — applied for ~450ms while the `dark` class flips so
+   every element with a dark: variant interpolates instead of snapping. */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition:
+    background-color 400ms ease,
+    background-image 400ms ease,
+    border-color 400ms ease,
+    color 400ms ease,
+    fill 400ms ease,
+    stroke 400ms ease,
+    box-shadow 400ms ease,
+    opacity 400ms ease !important;
+}
+
 /* LIGHT — clean white with subtle blue ambience */
 body {
   background-color: #ffffff;
