@@ -7,7 +7,13 @@ import PricingCard from '../components/PricingCard.jsx';
 import SectionHeading from '../components/SectionHeading.jsx';
 import { pricing, addons, company } from '../data/site.js';
 
-const fmt = (n) => '₹' + n.toLocaleString('en-IN');
+const fmt = (n) => {
+  if (n >= 1000) {
+    const k = n / 1000;
+    return '₹' + (k % 1 === 0 ? k : k.toFixed(1)) + 'K';
+  }
+  return '₹' + n.toLocaleString('en-IN');
+};
 
 const guarantees = [
   { icon: ShieldCheck, label: '30-day support', sub: 'Free after launch' },

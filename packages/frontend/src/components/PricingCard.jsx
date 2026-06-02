@@ -3,7 +3,13 @@ import { motion, useMotionValue, useMotionTemplate } from 'framer-motion';
 import { Check, Star, Rocket, Sparkles, Crown, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-function fmt(n) { return '₹' + n.toLocaleString('en-IN'); }
+function fmt(n) {
+  if (n >= 1000) {
+    const k = n / 1000;
+    return '₹' + (k % 1 === 0 ? k : k.toFixed(1)) + 'K';
+  }
+  return '₹' + n.toLocaleString('en-IN');
+}
 
 const TIER_META = {
   basic:    { Icon: Rocket,   accent: 'from-cyan-400 to-blue-600',   ring: 'from-cyan-400/40 to-blue-600/20',   chipText: 'text-cyan-600 dark:text-cyan-300'   },
