@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Logo from './Logo.jsx';
 import ThemeToggle from './ThemeToggle.jsx';
+import { company } from '../data/site.js';
 
 const links = [
   { to: '/', label: 'Home' },
@@ -74,9 +75,9 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <ThemeToggle className="hidden sm:inline-flex" />
-          <Link to="/contact" className="btn-primary hidden md:inline-flex">
+          <a href={company.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-primary hidden md:inline-flex">
             Get Free Quote
-          </Link>
+          </a>
           <button
             type="button"
             className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-300 dark:border-white/15"
@@ -117,7 +118,7 @@ export default function Navbar() {
               ))}
               <li className="flex items-center justify-between pt-2 mt-2 border-t border-slate-200/60 dark:border-white/10">
                 <ThemeToggle />
-                <Link to="/contact" className="btn-primary">Get Free Quote</Link>
+                <a href={company.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-primary">Get Free Quote</a>
               </li>
             </ul>
           </motion.div>
