@@ -49,7 +49,7 @@ export default function Footer() {
           <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
             <li className="flex items-start gap-2">
               <Mail size={15} className="mt-0.5 text-violetx-500"/>
-              <a href={`mailto:${company.email}`} className="hover:text-violetx-600 transition-colors">
+              <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${company.email}`} target="_blank" rel="noopener noreferrer" className="hover:text-violetx-600 transition-colors">
                 {company.email}
               </a>
             </li>

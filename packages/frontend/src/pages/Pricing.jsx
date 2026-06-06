@@ -538,7 +538,7 @@ export default function Pricing() {
             <a href={company.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-primary">
               <MessageCircle size={16}/> WhatsApp
             </a>
-            <Link to="/contact" className="btn-ghost">Email Us</Link>
+            <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${company.email}`} target="_blank" rel="noopener noreferrer" className="btn-ghost">Email Us</a>
           </div>
         </div>
       </section>
