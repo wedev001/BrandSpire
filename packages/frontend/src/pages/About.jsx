@@ -31,10 +31,10 @@ const pillars = [
 ];
 
 const milestones = [
-  { year: '2024', title: 'BrandSpire founded', desc: 'Arya More starts BrandSpire in Maharashtra with a focus on local businesses.', icon: Flag },
-  { year: '2024', title: 'First 10 clients', desc: 'Shipped websites for gyms, cafes and coaching academies across the state.', icon: Users },
-  { year: '2025', title: 'Web app capability', desc: 'Expanded into custom dashboards, SaaS builds and full-stack web applications.', icon: Rocket },
-  { year: '2025', title: 'Going global', desc: 'Onboarded our first clients outside India — remote-first, async-friendly.', icon: Globe },
+  { year: '2026', title: 'BrandSpire founded', desc: 'Arya More starts BrandSpire in Maharashtra with a focus on local businesses.', icon: Flag },
+  { year: '2026', title: 'First 10 clients', desc: 'Shipped websites for gyms, cafes and coaching academies across the state.', icon: Users },
+  { year: '2027', title: 'Web app capability', desc: 'Expanded into custom dashboards, SaaS builds and full-stack web applications.', icon: Rocket },
+  { year: '2027', title: 'Going global', desc: 'Onboarded our first clients outside India — remote-first, async-friendly.', icon: Globe },
 ];
 
 const stack = [
@@ -71,7 +71,7 @@ export default function About() {
               <span className="text-gradient">for builders.</span>
             </h2>
             <p className="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed">
-              BrandSpire began in 2024 when <strong className="text-slate-900 dark:text-white">Arya More</strong> noticed
+              BrandSpire began in 2026 when <strong className="text-slate-900 dark:text-white">Arya More</strong> noticed
               how many local businesses were stuck with cookie-cutter templates or overpriced agencies. He wanted to
               build a studio that paired senior engineering with the warmth of a small team — one that could ship a
               modern, fast, beautiful website at startup-friendly prices.

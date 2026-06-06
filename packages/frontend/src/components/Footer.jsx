@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Instagram, Linkedin, Twitter, Facebook, Mail, Phone, MapPin } from 'lucide-react';
 import Logo from './Logo.jsx';
+import { company } from '../data/site.js';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -46,8 +47,13 @@ export default function Footer() {
         <div>
           <h4 className="font-semibold mb-3">Contact</h4>
           <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
-            <li className="flex items-start gap-2"><Mail size={15} className="mt-0.5 text-violetx-500"/> hello@brandspire.in</li>
-            <li className="flex items-start gap-2"><Phone size={15} className="mt-0.5 text-violetx-500"/> +91 88765 43210</li>
+            <li className="flex items-start gap-2">
+              <Mail size={15} className="mt-0.5 text-violetx-500"/>
+              <a href={`mailto:${company.email}`} className="hover:text-violetx-600 transition-colors">
+                {company.email}
+              </a>
+            </li>
+            <li className="flex items-start gap-2"><Phone size={15} className="mt-0.5 text-violetx-500"/> {company.phoneDisplay}</li>
             <li className="flex items-start gap-2"><MapPin size={15} className="mt-0.5 text-violetx-500"/> India · Remote-first</li>
           </ul>
         </div>
