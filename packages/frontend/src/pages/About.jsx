@@ -85,7 +85,7 @@ export default function About() {
               <Link to="/contact" className="btn-primary">
                 Work With Us <ArrowRight size={16} />
               </Link>
-              <Link to="/portfolio" className="btn-ghost">See Our Work</Link>
+              <Link to="/services" className="btn-ghost">See Our Work</Link>
             </div>
           </motion.div>
 

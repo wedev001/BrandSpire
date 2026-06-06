@@ -32,7 +32,7 @@ export default function Home() {
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link to="/contact" className="btn-primary">Book Free Consultation</Link>
-              <Link to="/portfolio" className="btn-ghost">View Our Work</Link>
+              <Link to="/services" className="btn-ghost">Explore Services</Link>
             </div>
 
             <div className="mt-8 flex items-center gap-4">
@@ -75,28 +75,6 @@ export default function Home() {
 
           <div className="lg:col-span-8 grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
             {services.map((s, i) => <ServiceCard key={s.title} {...s} index={i} />)}
-          </div>
-        </div>
-      </section>
-
-      {/* FEATURED PROJECTS — left title + right carousel */}
-      <section className="section-y max-w-app container-px">
-        <div className="grid lg:grid-cols-12 gap-10">
-          <div className="lg:col-span-4">
-            <span className="chip">Our Work</span>
-            <h2 className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight">
-              Featured <span className="text-gradient">Projects</span>
-            </h2>
-            <p className="mt-4 text-slate-600 dark:text-slate-400">
-              Some of the websites and systems we have built.
-            </p>
-            <Link to="/portfolio" className="mt-6 btn-outline">
-              View All Projects <ArrowRight size={16}/>
-            </Link>
-          </div>
-
-          <div className="lg:col-span-8 pb-14">
-            <ProjectCarousel projects={projects} />
           </div>
         </div>
       </section>
