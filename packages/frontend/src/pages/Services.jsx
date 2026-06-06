@@ -178,10 +178,10 @@ export default function Services() {
               {/* Right-side mini stats */}
               <div className="lg:col-span-2 grid grid-cols-2 gap-3">
                 {[
-                  { v: '25+', l: 'Projects shipped' },
-                  { v: '20+', l: 'Happy clients' },
+                  { v: 'Ready', l: 'For launch' },
                   { v: '< 24h', l: 'Proposal turnaround' },
-                  { v: '5.0★', l: 'Avg. rating' },
+                  { v: '3', l: 'Team members' },
+                  { v: 'Concept', l: 'First delivery' },
                 ].map((s, i) => (
                   <motion.div
                     key={s.l}

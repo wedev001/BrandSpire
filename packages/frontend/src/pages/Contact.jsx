@@ -56,7 +56,7 @@ const faqs = [
   { q: 'Do you sign NDAs before discussion?',
     a: 'Absolutely. Share your project context and we will send across a mutual NDA before any deeper conversation.' },
   { q: 'Can we start with a smaller scope first?',
-    a: 'Yes — many of our long-term clients started with a single page or one small feature. We can scope a tight first milestone and expand from there.' },
+    a: 'Yes — we can begin with a lean first milestone and expand the project later as your needs evolve.' },
 ];
 
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:4000';

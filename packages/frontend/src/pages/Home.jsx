@@ -43,11 +43,7 @@ export default function Home() {
                 ))}
               </div>
               <div>
-                <p className="text-xs text-slate-500 dark:text-slate-400">Trusted by 20+ businesses</p>
-                <p className="flex items-center gap-1 text-xs font-semibold">
-                  {[1,2,3,4,5].map(i => <Star key={i} size={12} className="fill-yellow-400 stroke-yellow-400" />)}
-                  <span className="ml-1">5.0 (20+ Reviews)</span>
-                </p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">Built for growth-minded brands</p>
               </div>
             </div>
           </motion.div>

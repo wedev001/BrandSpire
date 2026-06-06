@@ -140,8 +140,8 @@ export default function HeroVisual() {
             <Star size={14} className="fill-amber-400 text-amber-400" />
           </span>
           <div className="min-w-0">
-            <p className="text-[10px] font-semibold text-slate-800 dark:text-white">5.0 / 5.0</p>
-            <p className="text-[9px] text-slate-500 dark:text-slate-400">20+ reviews</p>
+            <p className="text-[10px] font-semibold text-slate-800 dark:text-white">Launch-ready</p>
+            <p className="text-[9px] text-slate-500 dark:text-slate-400">Concept work & prototypes</p>
           </div>
         </div>
         <div className="mt-2 flex gap-0.5">

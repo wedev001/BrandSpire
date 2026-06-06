@@ -21,7 +21,7 @@ export default function Portfolio() {
       <PageHero
         breadcrumb="Portfolio"
         title={<>Our <span className="text-gradient">Portfolio</span></>}
-        subtitle="Some of the amazing projects we've built for our clients."
+        subtitle="Concept work and sample builds to show our approach and design direction."
       />
 
       <section className="max-w-app container-px">

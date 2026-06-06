@@ -4,10 +4,10 @@ import {
 } from 'lucide-react';
 
 export const stats = [
-  { value: 25, suffix: '+', label: 'Projects Completed',  icon: 'Users' },
-  { value: 15, suffix: '+', label: 'Happy Clients',       icon: 'Smile' },
+  { value: 5,  suffix: '+', label: 'Concept builds',      icon: 'Users' },
   { value: 3,  suffix: '+', label: 'Team Members',        icon: 'UserCog' },
-  { value: 99, suffix: '%', label: 'Client Satisfaction', icon: 'Sparkles' },
+  { value: 5,  suffix: '+', label: 'Years combined experience', icon: 'Sparkles' },
+  { value: 99, suffix: '%', label: 'Performance focus',  icon: 'Sparkles' },
 ];
 
 export const services = [
@@ -72,8 +72,8 @@ export const whyUs = [
   },
   {
     icon: ShieldCheck,
-    title: 'Built to Scale',
-    text: 'Secure, performant and ready for your tenth-thousandth user, not just your first.',
+    title: 'Built to Grow',
+    text: 'Secure, performant and ready for your first launch and the next stage of growth.',
     stat: '99.9%',
     statLabel: 'Uptime target',
     accent: 'from-blue-500 to-indigo-600',
@@ -236,12 +236,7 @@ export const process = [
   { icon: CheckCircle2,  title: 'Deploy & Support',  desc: 'We deploy and provide ongoing support.' },
 ];
 
-export const testimonials = [
-  { name: 'Suraj',  role: 'FitZone Gym',     text: 'Amazing work! Our gym website looks perfect and we get many new inquiries every week.', rating: 5 },
-  { name: 'Priya',  role: 'Café Aroma',      text: 'Very professional and delivered on time. Highly recommended for any business.', rating: 5 },
-  { name: 'Aman',   role: 'Coaching Hub',    text: 'Great communication and support. They genuinely understand our needs.', rating: 5 },
-  { name: 'Neha',   role: 'BloomBoutique',   text: 'They turned our vague idea into a beautifully working product. 10/10.', rating: 5 },
-];
+export const testimonials = [];
 
 export const team = [
   {

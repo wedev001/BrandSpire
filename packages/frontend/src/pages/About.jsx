@@ -31,10 +31,10 @@ const pillars = [
 ];
 
 const milestones = [
-  { year: '2026', title: 'BrandSpire founded', desc: 'Arya More starts BrandSpire in Maharashtra with a focus on local businesses.', icon: Flag },
-  { year: '2026', title: 'First 10 clients', desc: 'Shipped websites for gyms, cafes and coaching academies across the state.', icon: Users },
-  { year: '2027', title: 'Web app capability', desc: 'Expanded into custom dashboards, SaaS builds and full-stack web applications.', icon: Rocket },
-  { year: '2027', title: 'Going global', desc: 'Onboarded our first clients outside India — remote-first, async-friendly.', icon: Globe },
+  { year: '2026', title: 'BrandSpire founded', desc: 'Arya More starts BrandSpire in Maharashtra with a focus on helping businesses launch confidently online.', icon: Flag },
+  { year: '2026', title: 'Studio launch', desc: 'A small senior team came together to build the first websites and web apps.', icon: Users },
+  { year: '2027', title: 'Web app capability', desc: 'Expanded our offering to include dashboards, SaaS builds and custom product workflows.', icon: Rocket },
+  { year: '2027', title: 'First launch-ready systems', desc: 'Building the processes and tooling to support our first client launches.', icon: Globe },
 ];
 
 const stack = [
@@ -52,7 +52,7 @@ export default function About() {
       <PageHero
         breadcrumb="About"
         title={<>About <span className="text-gradient">BrandSpire</span></>}
-        subtitle="A small studio with a senior bar — building modern websites, apps and SaaS for ambitious businesses."
+        subtitle="A newly launched studio with a senior bar — building modern websites, apps and SaaS for ambitious businesses."
       />
 
       {/* Story / Founder quote */}
@@ -77,8 +77,8 @@ export default function About() {
               modern, fast, beautiful website at startup-friendly prices.
             </p>
             <p className="mt-3 text-slate-600 dark:text-slate-400 leading-relaxed">
-              Today we are a tight crew of engineers, designers and operators shipping production-grade work for
-              gyms, cafes, coaching academies, e-commerce brands and SaaS founders — across India and beyond.
+              Today we are a small, tight crew of engineers, designers and operators launching production-ready digital products
+              for growth-minded brands — with a focus on speed, clarity and long-term quality.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
