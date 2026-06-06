@@ -34,53 +34,65 @@ export default function Navbar() {
       className={
         'fixed top-0 inset-x-0 z-50 transition-all duration-300 ' +
         (scrolled
-          ? 'bg-white/70 dark:bg-ink-950/70 backdrop-blur-xl border-b border-slate-200/60 dark:border-white/10'
+          ? 'bg-white/90 dark:bg-ink-950/95 shadow-[0_35px_120px_-90px_rgba(15,23,42,0.35)] border-b border-slate-200/70 dark:border-white/10 backdrop-blur-xl'
           : 'bg-transparent border-b border-transparent')
       }
     >
-      <nav className="max-w-app container-px h-16 flex items-center justify-between">
-        <Link to="/" className="shrink-0">
-          <Logo />
-        </Link>
+      <nav className="max-w-app container-px mx-auto flex flex-wrap items-center justify-between gap-3 py-3 sm:py-4">
+        <div className="flex items-center gap-3 flex-1 min-w-0">
+          <Link to="/" className="shrink-0">
+            <Logo />
+          </Link>
+          <div className="hidden md:flex items-center gap-3 text-sm font-medium text-slate-700 dark:text-slate-300">
+            <span className="hidden lg:inline-flex rounded-full bg-slate-100 dark:bg-white/5 px-3 py-2">Launch-ready startup</span>
+          </div>
+        </div>
 
-        <ul className="hidden md:flex items-center gap-1">
-          {links.map((l) => (
-            <li key={l.to}>
-              <NavLink
-                to={l.to}
-                end={l.to === '/'}
-                className={({ isActive }) =>
-                  'relative px-3.5 py-2 rounded-lg text-sm font-medium transition-colors ' +
-                  (isActive
-                    ? 'text-slate-900 dark:text-white'
-                    : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white')
-                }
-              >
-                {({ isActive }) => (
-                  <>
-                    {l.label}
-                    {isActive && (
-                      <motion.span
-                        layoutId="nav-pill"
-                        className="absolute inset-0 -z-10 rounded-lg bg-violet-gradient-soft border border-violetx-500/30"
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      />
-                    )}
-                  </>
-                )}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
+        <div className="hidden md:flex items-center gap-1 lg:gap-3 md:flex-1 justify-center">
+          <ul className="flex flex-wrap items-center justify-center gap-1 lg:gap-2">
+            {links.map((l) => (
+              <li key={l.to}>
+                <NavLink
+                  to={l.to}
+                  end={l.to === '/'}
+                  className={({ isActive }) =>
+                    'relative px-3 py-2 rounded-lg text-sm transition-colors duration-200 ' +
+                    (isActive
+                      ? 'text-slate-900 dark:text-white'
+                      : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white')
+                  }
+                >
+                  {({ isActive }) => (
+                    <>
+                      {l.label}
+                      {isActive && (
+                        <motion.span
+                          layoutId="nav-pill"
+                          className="absolute inset-0 -z-10 rounded-lg bg-violet-gradient-soft border border-violetx-500/30"
+                          transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                    </>
+                  )}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <ThemeToggle className="hidden sm:inline-flex" />
-          <a href={company.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-primary hidden md:inline-flex">
+          <a
+            href={company.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary hidden lg:inline-flex"
+          >
             Get Free Quote
           </a>
           <button
             type="button"
-            className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-300 dark:border-white/15"
+            className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-300 dark:border-white/15 bg-white/80 dark:bg-ink-950/80 backdrop-blur-sm shadow-sm"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
             aria-expanded={open}
@@ -93,34 +105,43 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25 }}
-            className="md:hidden overflow-hidden border-t border-slate-200/60 dark:border-white/10 bg-white/90 dark:bg-ink-950/95 backdrop-blur-xl"
+            className="md:hidden overflow-hidden border-t border-slate-200/60 dark:border-white/10 bg-white/95 dark:bg-ink-950/95 backdrop-blur-xl"
           >
-            <ul className="container-px max-w-app py-4 flex flex-col gap-1">
-              {links.map((l) => (
-                <li key={l.to}>
-                  <NavLink
-                    to={l.to}
-                    end={l.to === '/'}
-                    className={({ isActive }) =>
-                      'block px-3 py-2.5 rounded-lg text-sm font-medium ' +
-                      (isActive
-                        ? 'bg-violet-gradient-soft text-slate-900 dark:text-white border border-violetx-500/30'
-                        : 'text-slate-700 dark:text-slate-300')
-                    }
-                  >
-                    {l.label}
-                  </NavLink>
-                </li>
-              ))}
-              <li className="flex items-center justify-between pt-2 mt-2 border-t border-slate-200/60 dark:border-white/10">
+            <div className="container-px max-w-app py-4">
+              <ul className="flex flex-col gap-2">
+                {links.map((l) => (
+                  <li key={l.to}>
+                    <NavLink
+                      to={l.to}
+                      end={l.to === '/'}
+                      className={({ isActive }) =>
+                        'block w-full rounded-2xl px-4 py-3 text-sm font-medium transition-colors ' +
+                        (isActive
+                          ? 'bg-violet-gradient-soft text-slate-900 dark:text-white border border-violetx-500/30'
+                          : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5')
+                      }
+                    >
+                      {l.label}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-4 flex items-center justify-between gap-3">
                 <ThemeToggle />
-                <a href={company.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-primary">Get Free Quote</a>
-              </li>
-            </ul>
+                <a
+                  href={company.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary flex-1 text-center"
+                >
+                  Get Free Quote
+                </a>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -245,6 +245,7 @@ export const team = [
     dept: 'Product · Strategy · DevOps',
     bio: 'Started BrandSpire to help local businesses move at the speed of the internet. Drives product vision, client strategy and operations end-to-end.',
     accent: 'from-cyan-400 to-blue-600',
+    image: '/team/Arya%20More.jpeg',
     skills: ['Product', 'Strategy', 'DevOps'],
   },
   {
@@ -253,6 +254,7 @@ export const team = [
     dept: 'UI · UX · Web Engineering',
     bio: 'Crafts the pixel-perfect, fast and accessible interfaces our clients ship — React, motion design, and design systems that scale.',
     accent: 'from-blue-500 to-indigo-600',
+    image: '/team/Suraj%20Singh.jpeg',
     skills: ['React', 'Tailwind', 'Motion'],
   },
   {
@@ -261,6 +263,7 @@ export const team = [
     dept: 'APIs · Cloud · Architecture',
     bio: 'Builds the backbone — robust APIs, secure auth and cloud infrastructure that keep BrandSpire products fast and reliable at any scale.',
     accent: 'from-indigo-500 to-violet-600',
+    image: '/team/Nilesh%20Dhole.jpeg',
     skills: ['Node.js', 'Postgres', 'AWS'],
   },
   {
@@ -269,6 +272,7 @@ export const team = [
     dept: 'Data · Integrations · Automation',
     bio: 'Owns the data layer and third-party integrations — payments, analytics and automations that quietly do the heavy lifting behind every product.',
     accent: 'from-violet-500 to-fuchsia-600',
+    image: '/team/Navin%20Idnani.jpeg',
     skills: ['Python', 'SQL', 'Integrations'],
   },
 ];
