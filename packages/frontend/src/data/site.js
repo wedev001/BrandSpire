@@ -105,7 +105,7 @@ export const projects = [
     color: 'from-cyan-400 to-blue-700',
     desc: 'Membership-driven fitness brand with class booking, trainer profiles and an integrated WhatsApp lead funnel.',
     stack: ['React', 'Tailwind', 'Node'],
-    year: '2024',
+    year: '2026',
   },
   {
     title: 'Brewline Cafe',
@@ -115,7 +115,7 @@ export const projects = [
     color: 'from-sky-400 to-blue-600',
     desc: 'Cozy menu-first cafe site with table reservations, daily specials and Instagram-style story highlights.',
     stack: ['Next.js', 'Tailwind', 'Sanity'],
-    year: '2024',
+    year: '2026',
   },
   {
     title: 'CoachOS',
@@ -125,7 +125,7 @@ export const projects = [
     color: 'from-cyan-400 to-blue-600',
     desc: 'All-in-one dashboard for coaching academies — batch scheduling, attendance, fee tracking and parent updates.',
     stack: ['React', 'TypeScript', 'Postgres'],
-    year: '2025',
+    year: '2027',
   },
   {
     title: 'Nova Mart',
@@ -135,7 +135,7 @@ export const projects = [
     color: 'from-blue-400 to-indigo-700',
     desc: 'Full-stack storefront with Razorpay checkout, inventory sync and a beautifully fast mobile experience.',
     stack: ['Next.js', 'Stripe', 'MongoDB'],
-    year: '2025',
+    year: '2027',
   },
   {
     title: 'Stellar Estates',
@@ -145,7 +145,7 @@ export const projects = [
     color: 'from-cyan-500 to-blue-800',
     desc: 'Luxury real-estate showcase with cinematic property tours, map search and high-intent lead capture.',
     stack: ['React', 'Mapbox', 'Framer Motion'],
-    year: '2024',
+    year: '2026',
   },
   {
     title: 'EduSphere SMS',
@@ -155,7 +155,7 @@ export const projects = [
     color: 'from-sky-500 to-blue-700',
     desc: 'School management system covering admissions, timetabling, exams and parent communication in one portal.',
     stack: ['React', 'Node', 'Postgres'],
-    year: '2025',
+    year: '2027',
   },
 ];
 
@@ -226,7 +226,7 @@ export const company = {
   phone: '8356937446',
   phoneDisplay: '+91 83569 37446',
   whatsapp: 'https://wa.me/918356937446',
-  email: 'hello@brandspire.in',
+  email: 'brandspire2026@gmail.com',
 };
 
 export const process = [
