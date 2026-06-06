@@ -272,8 +272,16 @@ export default function About() {
                   <div className={`absolute -top-16 -right-16 h-40 w-40 rounded-full bg-gradient-to-br ${m.accent} opacity-20 blur-2xl group-hover:opacity-40 transition-opacity duration-500`} />
 
                   <div className="relative inline-flex">
-                    <div className={`h-20 w-20 rounded-2xl bg-gradient-to-br ${m.accent} grid place-items-center text-white text-2xl font-bold font-display shadow-lg`}>
-                      {initials}
+                    <div className={`h-20 w-20 rounded-full overflow-hidden border-4 border-white dark:border-slate-950 shadow-lg ${m.image ? 'bg-slate-200' : 'bg-gradient-to-br'} ${m.accent} grid place-items-center text-white text-2xl font-bold font-display`}>
+                      {m.image ? (
+                        <img
+                          src={m.image}
+                          alt={m.name}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        initials
+                      )}
                     </div>
                     {i === 0 && (
                       <span className="absolute -top-1.5 -right-1.5 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-amber-400 text-amber-950 shadow-md">
