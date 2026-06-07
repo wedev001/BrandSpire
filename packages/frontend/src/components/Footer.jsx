@@ -16,12 +16,12 @@ export default function Footer() {
           </p>
           <div className="mt-5 flex items-center gap-3">
             {[
-              { icon: Instagram, href: '#' },
+              { icon: Instagram, href: 'https://www.instagram.com/aryyyamore/' },
               { icon: Linkedin, href: '#' },
               { icon: Twitter, href: '#' },
               { icon: Facebook, href: '#' },
             ].map(({ icon: Icon, href }, i) => (
-              <a key={i} href={href} aria-label="social"
+              <a key={i} href={href} target="_blank" rel="noopener noreferrer" aria-label="social"
                 className="h-9 w-9 grid place-items-center rounded-full border border-slate-300 dark:border-white/15 hover:bg-violet-gradient hover:text-white hover:border-transparent transition-all">
                 <Icon size={15} />
               </a>
