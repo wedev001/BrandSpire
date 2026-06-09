@@ -61,6 +61,30 @@ const faqs = [
 ];
 
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:4000';
+const WHATSAPP_NUMBER = '918356937446'; // Country code + number (no +)
+
+// Format form data into a professional WhatsApp message
+function formatWhatsAppMessage(form, projectType, budget) {
+  const message = `*New Project Inquiry from BrandSpire Website*
+
+*Name:* ${form.name}
+*Email:* ${form.email}
+${form.phone ? `*Phone:* ${form.phone}` : ''}
+*Project Type:* ${projectType}
+*Budget:* ${budget}
+
+*Message:*
+${form.message}`;
+  
+  return message;
+}
+
+// Redirect to WhatsApp with pre-filled message
+function redirectToWhatsApp(message) {
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+  window.open(whatsappUrl, '_blank');
+}
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
@@ -73,6 +97,7 @@ export default function Contact() {
   function handleChange(e) {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
   }
+  
   async function handleSubmit(e) {
     e.preventDefault();
     if (status === 'sending') return;
@@ -88,6 +113,11 @@ export default function Contact() {
       if (!res.ok || !data.ok) {
         throw new Error(data?.error || 'Could not send. Please try again.');
       }
+      
+      // Format and redirect to WhatsApp
+      const whatsappMessage = formatWhatsAppMessage(form, projectType, budget);
+      redirectToWhatsApp(whatsappMessage);
+      
       setStatus('sent');
       setForm({ name: '', email: '', phone: '', message: '' });
       setTimeout(() => setStatus('idle'), 5000);
