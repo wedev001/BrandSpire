@@ -30,3 +30,27 @@ export async function appendSubmission(entry) {
   list.push(entry);
   await fs.writeFile(SUBMISSIONS_FILE, JSON.stringify(list, null, 2), 'utf8');
 }
+
+export async function writeSubmissions(list) {
+  await fs.writeFile(SUBMISSIONS_FILE, JSON.stringify(list, null, 2), 'utf8');
+}
+
+export async function updateSubmission(id, updates) {
+  const list = await readSubmissions();
+  const idx = list.findIndex((s) => s.id === id);
+  if (idx === -1) return null;
+
+  Object.assign(list[idx], updates);
+  await writeSubmissions(list);
+  return list[idx];
+}
+
+export async function deleteSubmission(id) {
+  const list = await readSubmissions();
+  const idx = list.findIndex((s) => s.id === id);
+  if (idx === -1) return false;
+
+  list.splice(idx, 1);
+  await writeSubmissions(list);
+  return true;
+}

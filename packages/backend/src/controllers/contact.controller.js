@@ -1,7 +1,12 @@
 import { randomUUID } from 'node:crypto';
 import { EMAIL_RE, ALLOWED_PROJECT_TYPES, ALLOWED_BUDGETS } from '../config/constants.js';
-import { appendSubmission, readSubmissions } from '../services/storage.service.js';
-import { sendLeadEmail } from '../services/mail.service.js';
+import {
+  appendSubmission,
+  readSubmissions,
+  updateSubmission,
+  deleteSubmission,
+} from '../services/storage.service.js';
+import { sendContactNotification } from '../services/mail.service.js';
 
 function sanitize(value, maxLen = 2000) {
   if (typeof value !== 'string') return '';
@@ -42,10 +47,15 @@ export async function submitContact(req, res) {
     await appendSubmission(entry);
     console.log('[contact]', { id: entry.id, name, email, projectType, budget });
 
-    // Send email notification
-    await sendLeadEmail(entry);
+    let emailSent = false;
+    try {
+      const mailResult = await sendContactNotification(entry);
+      emailSent = mailResult.sent;
+    } catch (mailErr) {
+      console.error('[contact] email notification failed', mailErr);
+    }
 
-    return res.json({ ok: true, id: entry.id });
+    return res.json({ ok: true, id: entry.id, emailSent });
   } catch (err) {
     console.error('[contact] error', err);
     return res.status(500).json({ ok: false, error: 'Server error. Try again shortly.' });
@@ -55,4 +65,43 @@ export async function submitContact(req, res) {
 export async function listSubmissions(req, res) {
   const list = await readSubmissions();
   res.json({ ok: true, count: list.length, submissions: list });
+}
+
+export async function updateSubmissionById(req, res) {
+  const id = req.params.id;
+
+  try {
+    const allowed = ['name', 'email', 'phone', 'message', 'projectType', 'budget', 'userAgent', 'ip'];
+    const updates = {};
+
+    for (const key of allowed) {
+      if (key in req.body) updates[key] = sanitize(req.body[key], 4000);
+    }
+
+    const submission = await updateSubmission(id, updates);
+    if (!submission) {
+      return res.status(404).json({ ok: false, error: 'Not found' });
+    }
+
+    return res.json({ ok: true, submission });
+  } catch (err) {
+    console.error('[submissions:update] error', err);
+    return res.status(500).json({ ok: false, error: 'Server error' });
+  }
+}
+
+export async function deleteSubmissionById(req, res) {
+  const id = req.params.id;
+
+  try {
+    const deleted = await deleteSubmission(id);
+    if (!deleted) {
+      return res.status(404).json({ ok: false, error: 'Not found' });
+    }
+
+    return res.status(200).json({ ok: true });
+  } catch (err) {
+    console.error('[submissions:delete] error', err);
+    return res.status(500).json({ ok: false, error: 'Server error' });
+  }
 }
