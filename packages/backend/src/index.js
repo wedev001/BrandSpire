@@ -5,6 +5,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import { sendContactNotification } from './services/mail.service.js';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -91,8 +92,15 @@ app.post('/api/contact', async (req, res) => {
     await appendSubmission(entry);
     console.log('[contact]', { id: entry.id, name, email, projectType, budget });
 
-    // TODO: notify via email / Slack / WhatsApp
-    return res.json({ ok: true, id: entry.id });
+    let emailSent = false;
+    try {
+      const mailResult = await sendContactNotification(entry);
+      emailSent = mailResult.sent;
+    } catch (mailErr) {
+      console.error('[contact] email notification failed', mailErr);
+    }
+
+    return res.json({ ok: true, id: entry.id, emailSent });
   } catch (err) {
     console.error('[contact] error', err);
     return res.status(500).json({ ok: false, error: 'Server error. Try again shortly.' });

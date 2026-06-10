@@ -2,6 +2,7 @@ import {
   Globe, LayoutDashboard, Wrench, Share2, Cpu, ServerCog,
   Sparkles, ShieldCheck, Clock, MessageSquare, Rocket, Cog, Code2, CheckCircle2,
 } from 'lucide-react';
+import { getWhatsAppUrl } from '../lib/whatsapp.js';
 
 export const stats = [
   { value: 5,  suffix: '+', label: 'Concept builds',      icon: 'Users' },
@@ -225,8 +226,8 @@ export const addons = [
 export const company = {
   phone: '8356937446',
   phoneDisplay: '+91 83569 37446',
-  whatsapp: 'https://wa.me/918356937446',
-  email: 'brandspire2026@gmail.com',
+  whatsapp: getWhatsAppUrl(),
+  email: 'webdev.2301@gmail.com',
 };
 
 export const process = [
