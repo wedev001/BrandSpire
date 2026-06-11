@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Mail, Phone, MapPin, MessageCircle, Send, CheckCircle2,
@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import PageHero from '../components/PageHero.jsx';
 import SectionHeading from '../components/SectionHeading.jsx';
+import Toast from '../components/Toast.jsx';
 import { company } from '../data/site.js';
 import { formatWhatsAppInquiryMessage, openWhatsApp } from '../lib/whatsapp.js';
 
@@ -69,11 +70,19 @@ export default function Contact() {
   const [budget, setBudget] = useState(budgets[1]);
   const [status, setStatus] = useState('idle'); // 'idle' | 'sending' | 'sent' | 'error'
   const [errorMsg, setErrorMsg] = useState('');
+  const [toast, setToast] = useState(null);
   const [openFaq, setOpenFaq] = useState(0);
 
   function handleChange(e) {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
   }
+
+  useEffect(() => {
+    if (!toast) return undefined;
+
+    const timer = window.setTimeout(() => setToast(null), 5000);
+    return () => window.clearTimeout(timer);
+  }, [toast]);
   
   async function handleSubmit(e) {
     e.preventDefault();
@@ -95,17 +104,34 @@ export default function Contact() {
       openWhatsApp(whatsappMessage);
 
       setStatus('sent');
+      setToast({
+        type: data.emailSent ? 'mail' : 'success',
+        title: data.emailSent ? 'Email sent successfully' : 'Project inquiry received',
+        message: data.emailSent
+          ? `Your message has been sent to ${company.email}. We will reply shortly.`
+          : 'Your inquiry is saved. WhatsApp is opening so you can confirm the details instantly.',
+      });
       setForm({ name: '', email: '', phone: '', message: '' });
       setTimeout(() => setStatus('idle'), 5000);
     } catch (err) {
       setStatus('error');
-      setErrorMsg(err?.message || 'Could not send. Please try again.');
+      const message = err?.message || 'Could not send. Please try again.';
+      setErrorMsg(message);
+      setToast({
+        type: 'error',
+        title: 'Message was not sent',
+        message,
+      });
       setTimeout(() => setStatus('idle'), 5000);
     }
   }
 
   return (
     <>
+      <AnimatePresence>
+        {toast && <Toast toast={toast} onClose={() => setToast(null)} />}
+      </AnimatePresence>
+
       <PageHero
         breadcrumb="Contact"
         title={<>Let's build something <span className="text-gradient">great</span> together</>}
