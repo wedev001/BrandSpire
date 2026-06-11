@@ -227,7 +227,7 @@ export const company = {
   phone: '8356937446',
   phoneDisplay: '+91 83569 37446',
   whatsapp: getWhatsAppUrl(),
-  email: 'webdev.2301@gmail.com',
+  email: 'brandspire2026@gmail.com',
 };
 
 export const process = [
